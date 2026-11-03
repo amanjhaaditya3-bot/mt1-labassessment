@@ -1,0 +1,447 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Library Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #1e293b;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #ffffff;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e8edf4;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1d4ed8;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .logo-icon {
+            background: #e8efff;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 22px;
+        }
+
+        .nav-label {
+            color: #64748b;
+            font-size: 13px;
+            letter-spacing: 1px;
+        }
+
+        /* MAIN CONTAINER */
+
+        .main {
+            max-width: 1150px;
+            margin: auto;
+            padding: 55px 25px;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            background: linear-gradient(120deg, #173b83, #2563eb);
+            padding: 55px 50px;
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.15);
+        }
+
+        .hero::after {
+            content: "📚";
+            position: absolute;
+            right: 70px;
+            top: 30px;
+            font-size: 115px;
+            opacity: 0.13;
+            transform: rotate(-12deg);
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 12px;
+            margin-bottom: 22px;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-size: 38px;
+            margin-bottom: 15px;
+            line-height: 1.25;
+        }
+
+        .hero p {
+            font-size: 15px;
+            color: #dbeafe;
+            line-height: 1.8;
+            max-width: 550px;
+        }
+
+        /* SEARCH BAR */
+
+        .search-section {
+            margin: 35px 0;
+        }
+
+        .search-section h2 {
+            font-size: 22px;
+            margin-bottom: 17px;
+            color: #172554;
+        }
+
+        .search-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            max-width: 600px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .search-box span {
+            font-size: 20px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        /* SERVICES */
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            font-size: 23px;
+            color: #172554;
+        }
+
+        .section-heading p {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border-radius: 16px;
+            border: 1px solid #e8edf4;
+            transition: 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.08);
+            border-color: #bfdbfe;
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+            margin-bottom: 20px;
+        }
+
+        .blue {
+            background: #eaf1ff;
+        }
+
+        .purple {
+            background: #f0eaff;
+        }
+
+        .green {
+            background: #e4f8ed;
+        }
+
+        .orange {
+            background: #fff1df;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #64748b;
+        }
+
+        .card-arrow {
+            display: block;
+            text-align: right;
+            color: #2563eb;
+            font-size: 20px;
+            margin-top: 15px;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            text-align: center;
+            padding: 30px 15px;
+            margin-top: 50px;
+            border-top: 1px solid #e2e8f0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 18px 20px;
+            }
+
+            .nav-label {
+                display: none;
+            }
+
+            .main {
+                padding: 30px 18px;
+            }
+
+            .hero {
+                padding: 38px 25px;
+            }
+
+            .hero h1 {
+                font-size: 29px;
+            }
+
+            .hero::after {
+                right: 10px;
+                top: 15px;
+                font-size: 75px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            <div class="logo-icon">📚</div>
+            <span>Libra<span style="color:#64748b;">Space</span></span>
+        </div>
+
+        <div class="nav-label">
+            LIBRARY MANAGEMENT SYSTEM
+        </div>
+
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <!-- HERO SECTION -->
+
+        <section class="hero">
+
+            <div class="hero-tag">
+                YOUR DIGITAL LIBRARY
+            </div>
+
+            <h1>Welcome to Your<br>Library Management System</h1>
+
+            <p>
+                Discover knowledge, explore new stories and
+                manage your library collection with ease.
+                Your journey towards endless learning starts here.
+            </p>
+
+        </section>
+
+
+        <!-- SEARCH SECTION -->
+
+        <section class="search-section">
+
+            <h2>Explore Your Library</h2>
+
+            <div class="search-box">
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    placeholder="Search for books, authors or categories..."
+                >
+            </div>
+
+        </section>
+
+
+        <!-- AVAILABLE SERVICES -->
+
+        <section>
+
+            <div class="section-heading">
+
+                <h2>Available Services</h2>
+
+                <p>Everything you need to manage your library</p>
+
+            </div>
+
+
+            <div class="services">
+
+                <div class="card">
+
+                    <div class="card-icon blue">📖</div>
+
+                    <h3>View All Books</h3>
+
+                    <p>
+                        Browse the complete collection of books
+                        available in your library.
+                    </p>
+
+                    <span class="card-arrow">↗</span>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon purple">➕</div>
+
+                    <h3>Add New Books</h3>
+
+                    <p>
+                        Expand your collection by adding new
+                        books and their details.
+                    </p>
+
+                    <span class="card-arrow">↗</span>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon green">📋</div>
+
+                    <h3>Manage Library Records</h3>
+
+                    <p>
+                        Keep your book information organised
+                        and manage library records efficiently.
+                    </p>
+
+                    <span class="card-arrow">↗</span>
+
+                </div>
+
+
+                <div class="card">
+
+                    <div class="card-icon orange">🔎</div>
+
+                    <h3>Search Books</h3>
+
+                    <p>
+                        Find your favourite books quickly
+                        using their titles or author names.
+                    </p>
+
+                    <span class="card-arrow">↗</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+
+        <footer class="footer">
+
+            © 2026 LibraSpace | Library Management System
+
+            <br><br>
+
+            Designed for Knowledge & Learning
+
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
